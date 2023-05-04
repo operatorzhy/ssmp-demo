@@ -83,6 +83,12 @@ public class BookController {
     @ResponseBody
     public R getByPage(@PathVariable Integer current,@PathVariable Integer size){
         Page<Book> books = bookService.getByPage(current, size);
+
+        //针对最后一页数据删除结束，最后一页的显示空白的问题
+        //这是其中一种解决方案，解决完成后，页面会跳转到页码数最大的一页
+        if(current > books.getPages()){
+            books=bookService.getByPage((int) books.getPages(),size);
+        }
         R res=new R();
         if(books !=null){
             res.setFlag(true);
