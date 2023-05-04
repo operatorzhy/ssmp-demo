@@ -44,9 +44,9 @@ public class BookServiceImpl implements BookService {
     public Page<Book> getByPage(Integer current, Integer size, String type, String name, String description) {
         Page<Book> page=new Page<>(current,size);
         QueryWrapper<Book> qw=new QueryWrapper<>();
-        if(type!=null&&type!="") qw.eq("type",type);
-        if(name!=null&&name!="") qw.eq("name",name);
-        if(description!=null&&description!="") qw.eq("description",description);
+        qw.eq(type!=null&&type!="","type",type);
+        qw.eq(name!=null&&name!="","name",name);
+        qw.eq(description!=null&&description!="","description",description);
 
         Page<Book> page1 = bookDao.selectPage(page,qw);
 

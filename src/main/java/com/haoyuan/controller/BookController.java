@@ -79,15 +79,15 @@ public class BookController {
     }
 
     //分页查询
-    @GetMapping("/{current}/{size}/{type}/{name}/{description}")
+    @GetMapping("/{current}/{size}")
     @ResponseBody
-    public R getByPage(@PathVariable Integer current,@PathVariable Integer size,@PathVariable String type,@PathVariable String name,@PathVariable String description){
-        Page<Book> books = bookService.getByPage(current, size,type,name,description);
+    public R getByPage(@PathVariable Integer current,@PathVariable Integer size,Book book){
+        Page<Book> books = bookService.getByPage(current, size,book.getType(),book.getName(),book.getDescription());
 
         //针对最后一页数据删除结束，最后一页的显示空白的问题
         //这是其中一种解决方案，解决完成后，页面会跳转到页码数最大的一页
         if(current > books.getPages()){
-            books=bookService.getByPage((int) books.getPages(),size,type,name,description);
+            books=bookService.getByPage((int) books.getPages(),size,book.getType(),book.getName(),book.getDescription());
         }
         R res=new R();
         if(books !=null){
