@@ -46,6 +46,6 @@ public class BookServiceTest {
 
     @Test
     void testGetByPage(){
-        System.out.println(bookService.getByPage(2, 5));
+        System.out.println(bookService.getByPage(2, 5,null,null,null));
     }
 }

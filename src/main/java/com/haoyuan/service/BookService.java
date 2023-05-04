@@ -11,7 +11,7 @@ public interface BookService {
     boolean insert(Book book);
     boolean deleteById(Integer id);
     boolean updateById(Book book);
-    Page<Book> getByPage(Integer current, Integer size);
+    Page<Book> getByPage(Integer current, Integer size,String type,String name,String description);
 
 
 }

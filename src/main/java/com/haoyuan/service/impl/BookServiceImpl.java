@@ -1,5 +1,6 @@
 package com.haoyuan.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.haoyuan.Dao.BookDao;
 import com.haoyuan.domain.Book;
@@ -40,9 +41,14 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Page<Book> getByPage(Integer current, Integer size) {
+    public Page<Book> getByPage(Integer current, Integer size, String type, String name, String description) {
         Page<Book> page=new Page<>(current,size);
-        Page<Book> page1 = bookDao.selectPage(page,null);
+        QueryWrapper<Book> qw=new QueryWrapper<>();
+        if(type!=null&&type!="") qw.eq("type",type);
+        if(name!=null&&name!="") qw.eq("name",name);
+        if(description!=null&&description!="") qw.eq("description",description);
+
+        Page<Book> page1 = bookDao.selectPage(page,qw);
 
         return page1;
     }
