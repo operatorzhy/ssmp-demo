@@ -46,7 +46,7 @@ public class BookController {
         R res=new R();
         Boolean flag=bookService.updateById(book);
         res.setFlag(flag);
-        res.setMsg(flag?"修改成功":"修改失败，请稍后再试");
+        res.setMsg(flag?"修改成功^><^":"修改失败，请稍后再试");
         return res;
     }
 
