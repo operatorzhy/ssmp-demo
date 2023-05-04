@@ -40,10 +40,10 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> getByPage(Integer current, Integer size) {
+    public Page<Book> getByPage(Integer current, Integer size) {
         Page<Book> page=new Page<>(current,size);
         Page<Book> page1 = bookDao.selectPage(page,null);
 
-        return page1.getRecords();
+        return page1;
     }
 }

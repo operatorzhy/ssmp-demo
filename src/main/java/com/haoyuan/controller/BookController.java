@@ -1,5 +1,6 @@
 package com.haoyuan.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.haoyuan.domain.Book;
 import com.haoyuan.domain.R;
 import com.haoyuan.service.BookService;
@@ -81,7 +82,7 @@ public class BookController {
     @GetMapping("/{current}/{size}")
     @ResponseBody
     public R getByPage(@PathVariable Integer current,@PathVariable Integer size){
-        List<Book> books = bookService.getByPage(current, size);
+        Page<Book> books = bookService.getByPage(current, size);
         R res=new R();
         if(books !=null){
             res.setFlag(true);
