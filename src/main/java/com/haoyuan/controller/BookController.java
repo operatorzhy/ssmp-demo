@@ -36,6 +36,7 @@ public class BookController {
         Boolean flag = bookService.insert(book);
         R res=new R();
         res.setFlag(flag);
+        res.setMsg(flag?"保存成功":"保存失败");
         return res;
     }
 
@@ -43,7 +44,9 @@ public class BookController {
     @ResponseBody
     public R update(@RequestBody Book book){
         R res=new R();
-        res.setFlag(bookService.updateById(book));
+        Boolean flag=bookService.updateById(book);
+        res.setFlag(flag);
+        res.setMsg(flag?"修改成功":"修改失败，请稍后再试");
         return res;
     }
 
@@ -51,7 +54,9 @@ public class BookController {
     @ResponseBody
     public R delete(@PathVariable Integer id){
         R res=new R();
-        res.setFlag(bookService.deleteById(id));
+        Boolean flag=bookService.deleteById(id);
+        res.setFlag(flag);
+        res.setMsg(flag?"删除成功":"删除失败");
         return res;
     }
 
@@ -62,8 +67,10 @@ public class BookController {
         Book book = bookService.getById(id);
         if(book!=null){
             res.setFlag(true);
+            res.setMsg("查询成功");
         }else {
             res.setFlag(false);
+            res.setMsg("查询失败");
         }
         res.setObject(book);
         return res;
@@ -78,8 +85,10 @@ public class BookController {
         R res=new R();
         if(books !=null){
             res.setFlag(true);
+            res.setMsg("查询成功");
         }else{
             res.setFlag(false);
+            res.setMsg("查询成功");
         }
         res.setObject(books);
         return res;

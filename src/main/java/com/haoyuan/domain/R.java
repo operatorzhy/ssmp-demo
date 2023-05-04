@@ -6,4 +6,5 @@ import lombok.Data;
 public class R {
     private Boolean flag;
     private Object object;
+    private String msg;
 }
