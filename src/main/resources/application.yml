@@ -5,9 +5,9 @@ spring:
   datasource:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
-      url: jdbc:mysql://localhost:3306/db1?serverTimezone=UTC
+      url: jdbc:mysql://192.168.136.0:3306/db1?serverTimezone=UTC
       username: root
-      password: "037556"        #千万要注意这里要用引号
+      password: "#Zhy037556"        #千万要注意这里要用引号
 
 mybatis-plus:
   global-config:
